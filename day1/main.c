@@ -13,6 +13,7 @@ int main()
 	int i;
 	int floor	= 0;
 
+	/* Start tests */
 	for(i = 0; test1[i] != '\0'; i++)
 	{
 		if(test1[i] == '(')
@@ -20,6 +21,7 @@ int main()
 		else
 			floor--;
 	}
+
 	if(floor != 3)
 		printf("Test 1 failed! Got: %d, expected 3.\n", floor);
 	
@@ -32,10 +34,12 @@ int main()
 		else
 			floor--;
 	}
+
 	if(floor != -3)
-		printf("Test 1 failed! Got: %d, expected -3.\n", floor);
+		printf("Test 2 failed! Got: %d, expected -3.\n", floor);
 	
 	floor = 0;
+	/* End tests */
 
 	for(i = 0; input[i] != '\0'; i++)
 	{
