@@ -22,8 +22,10 @@ int main()
 	int	wh;	// 2*w*h
 	int	hl;	// 2*h*l
 	long	total = 0;
+	long	total_ribbon = 0;
 
-	// For sorting
+	// For sorting.
+	int	square[2];
 	int	dimensions[2];
 
 	fp = fopen("input.txt", "r");
@@ -47,11 +49,35 @@ int main()
 			wh = 2 * width * height;
 			hl = 2 * height * length;
 
-			dimensions[0] = lw;
-			dimensions[1] = wh;
-			dimensions[2] = hl;
+			square[0] = lw;
+			square[1] = wh;
+			square[2] = hl;
 
 			/* Bubble sort */
+			for(int j = 0; j < 2; j++)
+			{
+				for(int k = 0; k < 2; k++)
+				{
+					if(square[k] > square[k+1])
+					{
+						int temp = square[k+1];
+						square[k+1] = square[k];
+						square[k] = temp;
+					}
+				}
+			}
+
+			/* Debug to check bubble sort */
+			printf("Sort from lowest: %d, %d, %d\n", square[0],
+					square[1], square[2]);
+
+			total = total + (lw + wh + hl) + (square[0] / 2);
+
+			dimensions[0] = length;
+			dimensions[1] = width;
+			dimensions[2] = height;
+
+			/* Bubble sort for Ribbpn */
 			for(int j = 0; j < 2; j++)
 			{
 				for(int k = 0; k < 2; k++)
@@ -65,11 +91,8 @@ int main()
 				}
 			}
 
-			/* Debug to check bubble sort */
-			printf("Sort from lowest: %d, %d, %d\n", dimensions[0],
-					dimensions[1], dimensions[2]);
-
-			total = total + (lw + wh + hl) + (dimensions[0] / 2);
+			total_ribbon = total_ribbon + ((dimensions[0] * 2) +
+					(dimensions[1] * 2) + (length * width * height));
 
 			// Resetting variables
 			length = 0;
@@ -84,7 +107,7 @@ int main()
 		i++;
 	}
 
-	printf("Total: %ld\n", total);
+	printf("Total wrapping: %ld, Total ribbon: %ld\n", total, total_ribbon);
 
 	fclose(fp);
 
