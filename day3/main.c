@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int main()
 {
@@ -19,7 +20,10 @@ int main()
 	static int	houses[ARRAY_SIZE][ARRAY_SIZE];
 	int		x = ARRAY_MID;
 	int		y = ARRAY_MID;
+	int		x_robo = ARRAY_MID;
+	int		y_robo = ARRAY_MID;
 	int		houses_with_presents = 0;
+	bool		robo_santa = false;
 
 	fp = fopen("input.txt", "r");
 	if(fp == NULL)
@@ -30,30 +34,66 @@ int main()
 
 	while((char_buffer = fgetc(fp)) != EOF)
 	{
-		/* Delivery at the starting location */
-		houses[x][y]++;
+		if(robo_santa == false)
+		{
+			/* Delivery at the starting location */
+			houses[x][y]++;
 
-		switch(char_buffer) {
-			case '^' :
-				y++;
-				break;
-			case '>' :
-				x++;
-				break;
-			case 'v' :
-				y--;
-				break;
-			case '<' :
-				x--;
-				break;
-			default :
-				printf("Invalid character \"%c\" found.\n",
-						char_buffer);
-				return 1;
+			switch(char_buffer) {
+				case '^' :
+					y++;
+					break;
+				case '>' :
+					x++;
+					break;
+				case 'v' :
+					y--;
+					break;
+				case '<' :
+					x--;
+					break;
+				default :
+					printf("Invalid character \"%c\" found.\n",
+							char_buffer);
+					return 1;
+			}
+
+			/* Delivery at destination location */
+			houses[x][y]++;
+
+			/* Robo-santa moves next */
+			robo_santa = true;
 		}
+		else
+		{
+			/* Delivery at the starting location */
+			houses[x_robo][y_robo]++;
 
-		/* Delivery at destination location */
-		houses[x][y]++;
+			switch(char_buffer) {
+				case '^' :
+					y_robo++;
+					break;
+				case '>' :
+					x_robo++;
+					break;
+				case 'v' :
+					y_robo--;
+					break;
+				case '<' :
+					x_robo--;
+					break;
+				default :
+					printf("Invalid character \"%c\" found.\n",
+							char_buffer);
+					return 1;
+			}
+
+			/* Delivery at destination location */
+			houses[x_robo][y_robo]++;
+
+			/* Human-santa moves next */
+			robo_santa = false;
+		}
 
 		/* Debug: Avoiding seg failts. */
 		if( x == 1 || x == ARRAY_SIZE || y == 1 || y == ARRAY_SIZE)
