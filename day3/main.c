@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main()
 {
@@ -66,8 +65,6 @@ int main()
 	}
 
 	fclose(fp);
-
-	puts("Got here");
 
 	for(int x = 0; x < ARRAY_SIZE; x++)
 	{
