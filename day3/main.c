@@ -3,8 +3,9 @@
  * Mahyar Koshkouei
  */
 
-// lxwxh
-
+/* I can't guarantee how large of an area Santa is going to visit, so defining
+ * a very large array.
+ */
 #define ARRAY_SIZE 1000
 #define ARRAY_MID (ARRAY_SIZE / 2)
 
