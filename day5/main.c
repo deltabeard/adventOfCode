@@ -1,4 +1,4 @@
-/* Day 5:Doesn't He Have Intern-Elves For This?
+/* Day 5: Doesn't He Have Intern-Elves For This?
  *
  * Mahyar Koshkouei
  */
@@ -11,7 +11,7 @@
 /*
  * Checks if the input string contains at least three vowels.
  *
- * \param	char*	Input string to check.
+ * \param char*	Input string to check.
  * \return	True if at least three vowels found, else false.
  */
 bool check_vowel(char *str)
@@ -41,7 +41,7 @@ bool check_vowel(char *str)
  * Checks that the input string does not contain the strings "ab", "cd", "pq",
  * "xy".
  *
- * \param	char*	Input string to check.
+ * \param char*	Input string to check.
  * \return	True if the strings listed above *can not* be found in the
  * 		input string, else false.
  */
@@ -66,9 +66,9 @@ bool check_magic_strings(char *str)
  * Checks if the input string contains at least one letter that appears twice
  * in a row.
  *
- * \param	char*	Input string to check.
- * \return		True if input string contains at least one letter that
- * 			appears twice in a row, else false.
+ * \param char*	Input string to check.
+ * \return	True if input string contains at least one letter that
+ * 		appears twice in a row, else false.
  */
 bool check_double_letter(char *str)
 {
@@ -84,7 +84,6 @@ bool check_double_letter(char *str)
 int main(int argc, char *argv[])
 {
 	FILE		*fp;
-	FILE		*fpdbg;
 	char		char_buffer;
 	static char	buffer[17];
 	int		i = 0;
@@ -103,32 +102,14 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	fpdbg = fopen("stdout", "w+");
-
 	while((char_buffer = fgetc(fp)) != EOF)
 	{
 		if((buffer[i] = char_buffer) == '\n')
 		{
-			fprintf(fpdbg, "\nNext string\n");
-
-			if(check_magic_strings(buffer))
-				fprintf(fpdbg, "Didn't find magic strings\n");
-
-			if(check_vowel(buffer))
-				fprintf(fpdbg, "Found >= 3 vowels\n");
-			
-			if(check_double_letter(buffer))
-				fprintf(fpdbg, "Found double letters\n");
-
 			if(check_magic_strings(buffer) &&
 					check_vowel(buffer) &&
 					check_double_letter(buffer))
-			{
-				fprintf(fpdbg, "String passed!\n");
 				nice++;
-			}
-			else
-				fprintf(fpdbg, "String Failed tests!\n");
 
 			/* Clear buffer for next line in file */
 			memset(&buffer, '\0', sizeof(buffer));
@@ -140,7 +121,6 @@ int main(int argc, char *argv[])
 
 	fclose(fp);
 
-	fprintf(fpdbg, "Number of nice strings: %d\n", nice);
 	printf("Number of nice strings: %d\n", nice);
 
 	return 0;
