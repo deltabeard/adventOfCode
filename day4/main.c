@@ -8,13 +8,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main()
+int main(void)
 {
 	unsigned char md[MD5_DIGEST_LENGTH];
 	const char* key = "bgvyzdsv";
 	int answer = 0;
 	char concat_buf[50];
-	char md5str[32];
+	char md5str[50];
 	MD5_CTX c;
 	int i;
 	int found_five = 0;
