@@ -8,6 +8,10 @@
 #include <stdbool.h>
 #include <string.h>
 
+bool check_vowel(char *str);
+bool check_magic_strings(char *str);
+bool check_double_letter(char *str);
+
 /*
  * Checks if the input string contains at least three vowels.
  *
